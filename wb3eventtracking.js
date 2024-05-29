@@ -1,14 +1,15 @@
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-XXXXXX"></script>
 <script>
-// Track Interalp IBE Events with GA4, Matomo and Google Ads
 document.addEventListener('conversion', function () {
-  
-  var adwordsidlabel = 'AW-xxxxxxxxxx/label';
-  var gtag = window.gtag = window.gtag || [];
+  // Google Ads
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-XXXXXX');
+  gtag('event', 'conversion', {'send_to': 'AW-XXXXXX/yyyyyy','transaction_id': ''});
+
+ // Matomo
   var _paq = window._paq = window._paq || [];
-  
-  gtag('event', 'conversion', {'send_to': adwordsidlabel});
-  _paq.push(['trackEvent', 'ibe', 'buchung', 'reservierung', _umsatz]);
-  _paq.push(['trackEcommerceOrder', data.reservationId, _umsatz, null, null, null, false]);
-  
+  _paq.push(['trackEvent', 'ibe', 'buchung', 'reservierung', cartSum]);
 });
 </script>
