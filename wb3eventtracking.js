@@ -1,15 +1,28 @@
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-XXXXXX"></script>
 <script>
-document.addEventListener('conversion', function () {
-  // Google Ads
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'AW-XXXXXX');
-  gtag('event', 'conversion', {'send_to': 'AW-XXXXXX/yyyyyy','transaction_id': ''});
-
- // Matomo
+function trackEvent(eventName, eventCategory, eventAction, eventLabel, eventValue = null) {
   var _paq = window._paq = window._paq || [];
-  _paq.push(['trackEvent', 'ibe', 'buchung', 'reservierung', cartSum]);
+  if (eventValue !== null) {
+    _paq.push(['trackEvent', eventCategory, eventAction, eventLabel, eventValue]);
+  } else {
+    _paq.push(['trackEvent', eventCategory, eventAction, eventLabel]);
+  }
+}
+
+window.addEventListener('arrival_departure_date', function() {
+  trackEvent('arrival_departure_date', 'ibe', 'arrival_departure_date', 'interesse');
+});
+window.addEventListener('viewed_room', function() {
+  trackEvent('viewed_room', 'ibe', 'viewed_room', 'interesse');
+});
+window.addEventListener('viewed_room_detail', function() {
+  trackEvent('viewed_room_detail', 'ibe', 'viewed_room_detail', 'interesse');
+});
+window.addEventListener('add_rate_to_cart', function() {
+  trackEvent('add_rate_to_cart', 'ibe', 'add_rate_to_cart', 'interesse');
+});
+window.addEventListener('conversion', function(e) {
+  trackEvent('conversion', 'ibe', 'buchung', 'reservierung', e.detail.cartSum);
+  var _paq = window._paq = window._paq || [];
+  _paq.push(['trackEcommerceOrder', e.detail.transactionId, e.detail.cartSum, null, null, null, false]);
 });
 </script>
