@@ -21,8 +21,8 @@ window.addEventListener('add_rate_to_cart', function() {
   trackEvent('add_rate_to_cart', 'ibe', 'add_rate_to_cart', 'interesse');
 });
 window.addEventListener('conversion', function(e) {
-  trackEvent('conversion', 'ibe', 'buchung', 'reservierung', e.detail.cartSum);
+  trackEvent('conversion', 'ibe', 'buchung', 'reservierung', e.detail.value);
   var _paq = window._paq = window._paq || [];
-  _paq.push(['trackEcommerceOrder', e.detail.transactionId, e.detail.cartSum, null, null, null, false]);
+  _paq.push(['trackEcommerceOrder', e.detail.transaction_id, e.detail.value, null, null, null, false]);
 });
 </script>
