@@ -1,13 +1,8 @@
 <script>
-function trackEvent(eventName, eventCategory, eventAction, eventLabel, eventValue = null) {
+function trackEvent(eventName, eventCategory, eventAction, eventLabel) {
   var _paq = window._paq = window._paq || [];
-  if (eventValue !== null) {
-    _paq.push(['trackEvent', eventCategory, eventAction, eventLabel, eventValue]);
-  } else {
-    _paq.push(['trackEvent', eventCategory, eventAction, eventLabel]);
-  }
+   _paq.push(['trackEvent', eventCategory, eventAction, eventLabel]);
 }
-
 window.addEventListener('arrival_departure_date', function() {
   trackEvent('arrival_departure_date', 'ibe', 'arrival_departure_date', 'interesse');
 });
@@ -21,7 +16,7 @@ window.addEventListener('add_rate_to_cart', function() {
   trackEvent('add_rate_to_cart', 'ibe', 'add_rate_to_cart', 'interesse');
 });
 window.addEventListener('conversion', function(e) {
-  trackEvent('conversion', 'ibe', 'buchung', 'reservierung', e.detail.value);
+  trackEvent('conversion', 'ibe', 'buchung', 'buchung');
   var _paq = window._paq = window._paq || [];
   _paq.push(['trackEcommerceOrder', e.detail.transaction_id, e.detail.value, null, null, null, false]);
 });
