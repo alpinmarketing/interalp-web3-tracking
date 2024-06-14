@@ -1,4 +1,5 @@
 <script>
+// Matomo
 function trackEvent(eventName, eventCategory, eventAction, eventLabel) {
   var _paq = window._paq = window._paq || [];
    _paq.push(['trackEvent', eventCategory, eventAction, eventLabel]);
@@ -20,4 +21,14 @@ window.addEventListener('conversion', function(e) {
   var _paq = window._paq = window._paq || [];
   _paq.push(['trackEcommerceOrder', e.detail.transaction_id, e.detail.value, null, null, null, false]);
 });
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-XXXXX"></script>
+<script>
+// Google Ads Conversion Tracking
+window.addEventListener('conversion', function(e) {
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-XXXXX');
+  gtag('event', 'conversion', {'send_to':'AW-XXXXX/YYYYY','value':e.detail.value,'currency':'EUR'});
 </script>
