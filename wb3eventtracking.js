@@ -1,7 +1,17 @@
 <script>
-function trackEvent(eventName, eventCategory, eventAction, eventLabel) {
+function trackEventMatomo(eventName, eventCategory, eventAction, eventLabel) {
   var _paq = window._paq = window._paq || [];
-   _paq.push(['trackEvent', eventCategory, eventAction, eventLabel]);
+  _paq.push(['trackEvent', eventCategory, eventAction, eventLabel]);
+}
+function trackEventGA4(eventCategory, eventAction, eventLabel) {
+  gtag('event', eventAction, {
+    'event_category': eventCategory,
+    'event_label': eventLabel
+  });
+}
+function trackEvent(eventName, eventCategory, eventAction, eventLabel) {
+  trackEventMatomo(eventName, eventCategory, eventAction, eventLabel);
+  trackEventGA4(eventCategory, eventAction, eventLabel);
 }
 window.addEventListener('arrival_departure_date', function() {
   trackEvent('arrival_departure_date', 'ibe', 'arrival_departure_date', 'interesse');
@@ -19,6 +29,12 @@ window.addEventListener('conversion', function(e) {
   trackEvent('conversion', 'ibe', 'buchung', 'buchung');
   var _paq = window._paq = window._paq || [];
   _paq.push(['trackEcommerceOrder', e.detail.transaction_id, e.detail.value, null, null, null, false]);
+  
+  gtag('event', 'purchase', {
+    'transaction_id': e.detail.transaction_id,
+    'value': e.detail.value,
+    'currency': 'EUR'
+  });
 });
 </script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-XXXXX"></script>
