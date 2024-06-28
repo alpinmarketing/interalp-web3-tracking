@@ -22,9 +22,9 @@ window.addEventListener('conversion', function(e) {
   var _paq = window._paq = window._paq || [];
   var gtag = window.gtag = window.gtag || [];
   _paq.push(['trackEcommerceOrder', e.detail.transaction_id, e.detail.value, null, null, null, false]);
-  gtag('config', 'G-YYYYYY'); // Google Analytics Mess-ID
+  gtag('config', 'G-ZZZZZZ'); // Google Analytics Mess-ID
   gtag('event', 'purchase', {'transaction_id': e.detail.transaction_id,'value': e.detail.value,'currency': 'EUR'});
-  gtag('config', 'AW-XXXXX'); // Google Ads Tracking-ID
-  gtag('event', 'conversion', {'send_to':'AW-XXXXX/YYYYY','value':e.detail.value,'currency':'EUR'});
+  gtag('config', 'AW-XXXXXXX'); // Google Ads Tracking-ID
+  gtag('event', 'conversion', {'send_to':'AW-XXXXXXX/YYYYYYY','value':e.detail.value,'currency':'EUR'});
 });
 </script>
