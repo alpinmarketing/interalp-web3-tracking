@@ -1,3 +1,4 @@
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-XXXXXXXX"></script>
 <script>
 function trackEvent(eventName, eventCategory, eventAction, eventLabel) {
   var _paq = window._paq = window._paq || [];
@@ -20,8 +21,10 @@ window.addEventListener('add_rate_to_cart', function() {
 window.addEventListener('conversion', function(e) {
   trackEvent('conversion', 'ibe', 'buchung', 'buchung');
   var _paq = window._paq = window._paq || [];
-  var gtag = window.gtag = window.gtag || [];
   _paq.push(['trackEcommerceOrder', e.detail.transaction_id, e.detail.value, null, null, null, false]);
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
   gtag('config', 'G-ZZZZZZ'); // Google Analytics Mess-ID
   gtag('event', 'purchase', {'transaction_id': e.detail.transaction_id,'value': e.detail.value,'currency': 'EUR'});
   gtag('config', 'AW-XXXXXXX'); // Google Ads Tracking-ID
